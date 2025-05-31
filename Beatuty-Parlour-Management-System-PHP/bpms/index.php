@@ -88,10 +88,10 @@ include('includes/dbconnection.php');
               </div>
             </div>
             <div class="column col-lg-4 col-md-6 col-sm-6 back-image  ">
-              <img src="assets/images/5.jpg" alt="product" class="img-responsive ">
+              <img src="assets/images/afro.jpg" alt="product" class="img-responsive ">
             </div>
-            <div class="column col-lg-4 col-md-6 col-sm-6 back-image2 ">
-              <img src="assets/images/6.jpg" alt="product" class="img-responsive ">
+            <div style ="width: 400px" class="column col-lg-4 col-md-6 col-sm-6 back-image2 ">
+              <img style="scaleX: 3" src="assets/images/saoon.jpg" alt="product" class="img-responsive ">
             </div>
           </div>
         </div>
@@ -129,7 +129,7 @@ include('includes/dbconnection.php');
     </div>
     </div>
   </section>
-  <h3 class="sectiontitle">Services we offer</h3>
+  <h3 style="font-size: 40px; font-weight:700;" class="sectiontitle">Services we offer</h3>
   <section class="w3l-specification-6">
     <div class="specification-layout ">
       <div class="container">
@@ -204,6 +204,9 @@ include('includes/dbconnection.php');
     }
     .aelist li {
       margin: 0px 0;
+    }
+    #slide-1{
+      background-color:white;
     }
     h4 {
       font-size: 2rem;

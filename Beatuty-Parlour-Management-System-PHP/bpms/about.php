@@ -116,7 +116,7 @@ include('includes/dbconnection.php');
 
                             ?>
                                 <h5><a href="blog.html"><?php echo $row['PageTitle']; ?></a></h5>
-                                <p class="para mt-2"><?php echo $row['PageDescription']; ?></p><?php } ?>
+                                <p style="margin-bottom:1.5em;" class="para mt-2"><?php echo $row['PageDescription']; ?></p><?php } ?>
                         </div>
 
 
