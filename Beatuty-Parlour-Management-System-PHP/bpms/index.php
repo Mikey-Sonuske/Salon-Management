@@ -56,7 +56,7 @@ include('includes/dbconnection.php');
         <div class="container">
           <div class="banner-text">
             <h3>Vio Hair Salon and Spa</h3>
-            <h4>We make your hair dreams<br>
+            <h4 class="cta sectiontitle">We make your hair dreams<br>
               come true</h4>
 
             <a href="book-appointment.php" class="btn logo-button top-margin">Book an Appointment</a>
@@ -82,16 +82,22 @@ include('includes/dbconnection.php');
 
             <div class="column col-lg-4 col-md-6 color-2 ">
               <div>
-                <h4 class=" ">Offering you professional services at an affordable cost</h4>
-                <p class="para ">Our offers for this season</p>
+                <h4 class="sectiontitle cta">Offering you professional services at an affordable cost</h4>
+                
+                <p class="para "> The Iconic Afro Cut!
+Rock your roots with style — bold, beautiful, and unapologetically YOU.
+✨ Get 20% OFF today only!
+
+Walk in or book now — let your crown shine. At a subsized cost, get the afro that'll last longer than the usual fros you have seen and probably tried
+                </p>
                 <a href="about.php" class="action-button btn mt-md-4 mt-3">Read more</a>
               </div>
             </div>
             <div class="column col-lg-4 col-md-6 col-sm-6 back-image  ">
               <img src="assets/images/afro.jpg" alt="product" class="img-responsive ">
             </div>
-            <div style ="width: 400px" class="column col-lg-4 col-md-6 col-sm-6 back-image2 ">
-              <img style="scaleX: 3" src="assets/images/saoon.jpg" alt="product" class="img-responsive ">
+            <div class="column col-lg-4 col-md-6 col-sm-6 back-image2 ">
+              <img  src="assets/images/saoon.jpg" alt="product" class="img-responsive ">
             </div>
           </div>
         </div>
@@ -129,7 +135,7 @@ include('includes/dbconnection.php');
     </div>
     </div>
   </section>
-  <h3 style="font-size: 40px; font-weight:700;" class="sectiontitle">Services we offer</h3>
+  <h3 class="sectiontitle">Services we offer</h3>
   <section class="w3l-specification-6">
     <div class="specification-layout ">
       <div class="container">
@@ -191,11 +197,20 @@ include('includes/dbconnection.php');
     }
   </script>
   <style>
+    .slide-one {
+      background-image: url("../images/1.png"); }
+    .slide-two {
+     background-image: url("../images/2.jpg"); } 
     .sectiontitle {
       text-align: center;
       margin: 40px 0;
-      font-size: 2rem;
+      font-size: 2.8rem;
+      font-weight:500;
       color: #333;
+      /* margin-bottom:-3rem; */
+    }
+    .cta{
+      text-align: left;
     }
     .aelist{
       position: relative;
@@ -205,15 +220,15 @@ include('includes/dbconnection.php');
     .aelist li {
       margin: 0px 0;
     }
-    #slide-1{
+    /* #slide-1{
       background-color:white;
-    }
-    h4 {
+    } */
+    /* h4 {
       font-size: 2rem;
       color: #333;
       margin-bottom: 20px;
       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    }
+    } */
   </style>
   <!-- /move top -->
 </body>

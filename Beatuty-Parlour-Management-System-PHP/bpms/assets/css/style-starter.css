@@ -2651,7 +2651,7 @@
     text-align: center;
     width: 100%; }
   .w3l-hero-headers-9 header label {
-    background-color: rgba(255, 255, 255, 0.8);
+    /* background-color: rgba(255, 255, 255, 0.8); */
     border-radius: 5px;
     width: 42px;
     height: 5px;
@@ -2673,11 +2673,10 @@
     position: absolute;
     right: 10px; }
   .w3l-hero-headers-9 .slide {
-    border:2px red;
-    /* width: 80%;
+    width: 80%;
     position: absolute;
     top: 0;
-    left: 80%;
+    left: 0%;
     z-index: 10;
     display: grid;
     align-items: center;
@@ -2688,15 +2687,15 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
-    transition: left 0s .75s ease-in-out; } */}
-  /* .w3l-hero-headers-9 .slide-one {
+    transition: left 0s .75s ease-in-out; } 
+  .w3l-hero-headers-9 .slide-one {
     background-image: url("../images/1.jpg"); }
   .w3l-hero-headers-9 .slide-two {
-    background-image: url("../images/2.jpg"); } */
+    background-image: url("../images/2.jpg"); }
   .w3l-hero-headers-9 .slide, .w3l-hero-headers-9 .css-slider {
     height: 700px; }
   .w3l-hero-headers-9 .slide:before {
-    /* width: 100%;
+     width: 100%;
     content: "";
     background: rgba(0, 0, 0, 0.6);
     position: absolute;
@@ -2705,7 +2704,7 @@
     left: 0px;
     right: 0px;
     opacity: .6;
-    z-index: -1; } */}
+    z-index: -1; } 
   .w3l-hero-headers-9 .slide h1 {
     opacity: 0;
     transform: translateY(100%);
@@ -2789,13 +2788,13 @@
     z-index: 0;
     position: relative; }
   .w3l-teams-15 .team-single-main:before {
-    /* width: 100%;
+    width: 100%;
     content: "";
-    /* background: rgba(0, 0, 0, 0.8); */
+    background: rgba(0, 0, 0, 0.8); 
     position: absolute;
     top: 0px;
     bottom: 0px;
-    opacity: .6; */
+    opacity: .6; 
     z-index: -1; }
   .w3l-teams-15 h3.team-head {
     color: #fff;
@@ -11820,7 +11819,7 @@ a.action-sub-button:hover, a.action-sub-button:active {
 
 p.para {
   font-size: 16px;
-  line-height: 26px;
+  line-height: 40px;
   color: var(--para-color); }
 
 h1, h2, h3, h4, h5, h6 {
