@@ -44,17 +44,16 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
 
     <!-- breadcrumbs -->
     <section class="w3l-inner-banner-main">
-        <div class="breadcrumbs-sub">
-            <div class="container">
-                <ul class="breadcrumbs-custom-path">
-                    <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a>
-                        <p>
-                    </li>
-                    <li class="active ">Invoice History</li>
-                </ul>
-            </div>
+      <div class="breadcrumbs-sub">
+        <div class="container">
+          <ul class="breadcrumbs-custom-path">
+            <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+            </li>
+            <li class="active ">Invoice History</li>
+          </ul>
         </div>
-        </div>
+      </div>
+      </div>
     </section>
     <!-- breadcrumbs //-->
     <section class="w3l-contact-info-main" id="contact">

@@ -173,11 +173,13 @@ if (isset($_POST['submit'])) {
     </script>
     <style>
         .details {
-            padding: 20px;
             background: #fff;
-            border-radius: 10px;
+            border-radius: 5px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+         
         }
 
         .w3l-contact-info-main .contact-sec {
@@ -191,11 +193,6 @@ if (isset($_POST['submit'])) {
             margin-bottom: 40px;
 
         }
-
-        .container {
-            max-width: 70%;
-        }
-
         .w3l-contact-info-main button.btn-contact {
             margin: 50px 0px;
 

@@ -18,6 +18,7 @@ if(isset($_POST['submit']))
     if ($query) {
   
     echo "<script>alert('Service has been Updated.');</script>";
+	echo "<script>window.location.href = 'manage-services.php'</script>";
   }
   else
     {
@@ -31,7 +32,7 @@ if(isset($_POST['submit']))
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>BPMS | Update Services</title>
+<title>Admin| Update Services</title>
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
@@ -104,7 +105,6 @@ while ($row=mysqli_fetch_array($ret)) {
 				
 			</div>
 		</div>
-		 <?php include_once('includes/footer.php');?>
 	</div>
 	<!-- Classie -->
 		<script src="js/classie.js"></script>

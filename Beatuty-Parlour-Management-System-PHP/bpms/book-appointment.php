@@ -12,9 +12,10 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
         $adate = $_POST['adate'];
         $atime = $_POST['atime'];
         $msg = $_POST['message'];
+        $service = $_POST['service'];
         $aptnumber = mt_rand(100000000, 999999999);
 
-        $query = mysqli_query($con, "insert into tblbook(UserID,AptNumber,AptDate,AptTime,Message) value('$uid','$aptnumber','$adate','$atime','$msg')");
+        $query = mysqli_query($con, "insert into tblbook(UserID,AptNumber,AptDate,AptTime,Message) values('$uid','$aptnumber','$adate','$atime','$msg')");
 
         if ($query) {
             $ret = mysqli_query($con, "select AptNumber from tblbook where tblbook.UserID='$uid' order by ID desc limit 1;");
@@ -59,24 +60,23 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
         <!-- disable body scroll which navbar is in active -->
 
         <!-- breadcrumbs -->
-       <section class="w3l-inner-banner-main">
-        <div class="breadcrumbs-sub">
-            <div class="container">
-                <ul class="breadcrumbs-custom-path">
-                    <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a>
-                        <p>
-                    </li>
-                    <li class="active ">Book appointment</li>
-                </ul>
+        <section class="w3l-inner-banner-main">
+            <div class="breadcrumbs-sub">
+                <div class="container">
+                    <ul class="breadcrumbs-custom-path">
+                        <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                            <p>
+                        </li>
+                        <li class="active ">Book appointment</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        </div>
-    </section>
+            </div>
+        </section>
         <!-- breadcrumbs //-->
         <section class="w3l-contact-info-main" id="contact">
             <div class="contact-sec	">
                 <div class="container">
-
                     <div class="d-grid contact-view">
                         <div class="cont-details">
                             <?php
@@ -120,26 +120,58 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
                                     <div class="cont-right">
                                         <h6>Time</h6>
                                         <p class="para"> <?php echo $row['Timing']; ?></p>
+                                        
                                     </div>
                                 </div>
                             <?php } ?>
                         </div>
+
                         <div class="map-content-9 mt-lg-0 mt-4">
                             <form method="post">
+                                <!--I added this part later-->
+                                <div style="padding-top: 30px;">
+                                    <label>Select Service</label>
+                                    <select name="service" id="service" required class="form-control">
+                                        <option value="">Choose Service</option>
+                                        <?php
+                                        $sql = mysqli_query($con, "SELECT * FROM tblservices");
+                                        while ($row = mysqli_fetch_array($sql)) {
+                                        ?>
+                                            <option value="<?php echo $row['ID']; ?>" data-price="<?php echo $row['Cost']; ?>">
+                                                <?php echo $row['ServiceName']; ?>
+                                            </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+
+                                <div style="padding-top: 30px;">
+                                    <label>Price</label>
+                                    <input type="text" class="form-control" id="price" name="price" readonly>
+                                </div>
                                 <div style="padding-top: 30px;">
                                     <label>Appointment Date</label>
-
                                     <input type="date" class="form-control appointment_date" placeholder="Date" name="adate" id='adate' required="true">
                                 </div>
                                 <div style="padding-top: 30px;">
-                                    <label>Appointment Time</label>
-
-                                    <input type="time" class="form-control appointment_time" placeholder="Time" name="atime" id='atime' required="true">
+                                    <label>Appointment Time</label><select name="atime" required class="form-control">
+                                        <option value="8:00 am">8:00 am</option>
+                                        <option value="9:00 am">9:00 am</option>
+                                        <option value="10:00 am">10:00 am</option>
+                                        <option value="11:00 am">11:00 am</option>
+                                        <option value="12:00 pm">12:00 pm</option>
+                                        <option value="2:00 pm">2:00 pm</option>
+                                        <option value="3:00 pm">3:00 pm</option>
+                                        <option value="4:00 pm">4:00 pm</option>
+                                        <option value="5:00 pm">5:00 pm</option>
+                                        <option value="6:00 pm">6:00 pm</option>
+                                        <option value="7:00 pm">7:00 pm</option>
+                                    </select>
                                 </div>
 
                                 <div style="padding-top: 30px;">
                                     <textarea class="form-control" id="message" name="message" placeholder="Message" required=""></textarea>
                                 </div>
+
                                 <button type="submit" class="btn btn-contact" name="submit">Make an Appointment</button>
                             </form>
                         </div>
@@ -148,6 +180,7 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
                 </div>
             </div>
         </section>
+
         <?php include_once('includes/footer.php'); ?>
         <!-- move top -->
         <button onclick="topFunction()" id="movetop" title="Go to top">
@@ -185,6 +218,13 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
 
                 var maxDate = year + '-' + month + '-' + day;
                 $('#adate').attr('min', maxDate);
+            });
+            $(document).ready(function() {
+                $('#service').change(function() {
+                    var selectedOption = $(this).find('option:selected');
+                    var price = selectedOption.data('price');
+                    $('#price').val(price ? 'KSH ' + price : '');
+                });
             });
         </script>
         <!-- /move top -->

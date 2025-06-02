@@ -36,19 +36,19 @@ include('includes/dbconnection.php');
   <!-- disable body scroll which navbar is in active -->
 
   <!-- breadcrumbs -->
- <section class="w3l-inner-banner-main">
-        <div class="breadcrumbs-sub">
-            <div class="container">
-                <ul class="breadcrumbs-custom-path">
-                    <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a>
-                        <p>
-                    </li>
-                    <li class="active ">Services</li>
-                </ul>
-            </div>
-        </div>
-        </div>
-    </section>
+  <section class="w3l-inner-banner-main">
+    <div class="breadcrumbs-sub">
+      <div class="container">
+        <ul class="breadcrumbs-custom-path">
+          <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+            <p>
+          </li>
+          <li class="active ">Services</li>
+        </ul>
+      </div>
+    </div>
+    </div>
+  </section>
   <!-- breadcrumbs //-->
   <section class="w3l-recent-work-hobbies">
     <div class="recent-work ">
@@ -63,14 +63,37 @@ include('includes/dbconnection.php');
 
           ?>
             <div class="col-lg-4 col-md-6 col-sm-6 propClone">
-              <img src="admin/images/<?php echo $row['Image'] ?>" alt="product" height="200" width="400" class="img-responsive about-me">
-              <div class="about-grids ">
-                <hr>
-                <h5 class="para"><?php echo $row['ServiceName']; ?></h5>
-                <p class="para "><?php echo $row['ServiceDescription']; ?> </p>
-                <p class="para " style="color: hotpink;"> Cost of Service: $<?php echo $row['Cost']; ?> </p>
+              <!--link to services
+              <a href="book-appointment.php" class="d-block zoom">
+                <img src="admin/images/<?php echo $row['Image'] ?>" alt="product" height="400" width="400" class="img-responsive about-me">
+                <div class="about-grids ">
+                  <hr>
+                  <h5 class="para"><?php echo $row['ServiceName']; ?></h5><br>
+                  <p class="para "><?php echo $row['ServiceDescription']; ?> </p>
+                  <br>
+                  <p class="para " style="color: hotpink;"> Price: Ksh <?php echo $row['Cost']; ?> </p>
 
-              </div>
+                </div>
+                -->
+              <?php
+              // Check if user is logged in
+              if (isset($_SESSION['bpmsuid'])) {
+                $link = "book-appointment.php?service_id=" . $row['ID'];
+              } else {
+                $link = "signup.php";
+              }
+              ?>
+              <a href="<?php echo $link; ?>" class="d-block zoom">
+                <img src="admin/images/<?php echo $row['Image'] ?>" alt="product" height="500" width="350" class="img-responsive about-me">
+                <div class="about-grids">
+                  <hr>
+                  <h5 class="para"><?php echo $row['ServiceName']; ?></h5><br>
+                  <p class="para "><?php echo $row['ServiceDescription']; ?> </p>
+                  <br>
+                  <p class="para " style="color: hotpink;"> Price: Ksh <?php echo $row['Cost']; ?> </p>
+                  <br><br>
+                </div>
+              </a>
             </div>
             <br><?php
                 $cnt = $cnt + 1;
@@ -80,6 +103,7 @@ include('includes/dbconnection.php');
       </div>
     </div>
   </section>
+
 
 
   <?php include_once('includes/footer.php'); ?>

@@ -71,6 +71,8 @@ if (isset($_POST['login'])) {
             <div class="container">
                 <p>Welcome back valued Customer</p>
                 <p>Kindly Fill in your details</p>
+                <p>For new customers register <a href="signup.php">here</a></p>
+
                 <!--<div class="d-grid contact-view">
                     
                     <div class="cont-details">

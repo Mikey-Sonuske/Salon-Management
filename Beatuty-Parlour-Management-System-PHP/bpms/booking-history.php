@@ -43,19 +43,19 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
         <!-- disable body scroll which navbar is in active -->
 
         <!-- breadcrumbs -->
-       <section class="w3l-inner-banner-main">
-        <div class="breadcrumbs-sub">
-            <div class="container">
-                <ul class="breadcrumbs-custom-path">
-                    <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a>
-                        <p>
-                    </li>
-                    <li class="Booking History ">About</li>
-                </ul>
+        <section class="w3l-inner-banner-main">
+            <div class="breadcrumbs-sub">
+                <div class="container">
+                    <ul class="breadcrumbs-custom-path">
+                        <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                            <p>
+                        </li>
+                        <li class="Booking History ">Booking History</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        </div>
-    </section>
+            </div>
+        </section>
         <!-- breadcrumbs //-->
         <section class="w3l-contact-info-main" id="contact">
             <div class="contact-sec	">
@@ -63,8 +63,8 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
 
                     <div>
                         <div class="cont-details">
-                            <div class="table-content table-responsive cart-table-content m-t-30">
-                                <h4 style="padding-bottom: 20px;text-align: center;color: blue;">Appointment History</h4>
+                            <!--<div class="table-content table-responsive cart-table-content m-t-30">
+                                <h4 style="padding-bottom: 20px;text-align: center;color: blue;">Booking History</h4>
                                 <table border="2" class="table">
                                     <thead class="gray-bg">
                                         <tr>
@@ -114,6 +114,55 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
                                     </tbody>
                                 </table>
                             </div>
+                                            -->
+                            <div class="booking-history-table">
+                                <h4 class="history-title">Booking History</h4>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Appointment Number</th>
+                                            <th>Appointment Date</th>
+                                            <th>Appointment Time</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $userid = $_SESSION['bpmsuid'];
+                                        $query = mysqli_query($con, "select tbluser.ID as uid, tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.Message,tblbook.BookingDate,tblbook.Status from tblbook join tbluser on tbluser.ID=tblbook.UserID where tbluser.ID='$userid'");
+                                        $cnt = 1;
+                                        $count = mysqli_num_rows($query);
+                                        if ($count > 0) {
+                                            while ($row = mysqli_fetch_array($query)) { ?>
+                                                <tr>
+                                                    <td><?php echo $cnt; ?></td>
+                                                    <td><?php echo $row['AptNumber']; ?></td>
+                                                    <td><?php echo $row['AptDate']; ?></td>
+                                                    <td><?php echo $row['AptTime']; ?></td>
+                                                    <td class="status-waiting">
+                                                        <?php
+                                                        $status = $row['Status'];
+                                                        echo $status == '' ? "Waiting for confirmation" : $status;
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <a href="appointment-detail.php?aptnumber=<?php echo $row['AptNumber']; ?>"
+                                                            class="btn-view">View</a>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                                $cnt++;
+                                            }
+                                        } else { ?>
+                                            <tr>
+                                                <td colspan="6" style="text-align: center; color: #8B4B8B;">No Record Found</td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
                     </div>
@@ -146,6 +195,71 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
                 document.documentElement.scrollTop = 0;
             }
         </script>
+        <style>
+            .booking-history-table {
+                box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+                overflow: hidden;
+                margin: 2rem 2rem;
+            }
+
+            .booking-history-table table {
+                width: 100%;
+                border-collapse: collapse;
+                background: #fff;
+            }
+
+            .booking-history-table th {
+                background: linear-gradient(100deg, #FF69B4, #FFB6C1);
+                color: white;
+                padding: 15px;
+                text-align: left;
+                font-weight: 600;
+            }
+
+            .booking-history-table td {
+                padding: 12px 15px;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .booking-history-table tbody tr:hover {
+                background-color: #fcf3f9;
+            }
+
+            .booking-history-table .status-waiting {
+                color: #8B4B8B;
+                font-weight: 600;
+            }
+
+            .booking-history-table .btn-view {
+                background: #FF69B4;
+                color: white;
+                padding: 8px 20px;
+                border-radius: 5px;
+                border: none;
+                transition: all 0.3s ease;
+            }
+
+            .booking-history-table .btn-view:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(139, 75, 139, 0.3);
+            }
+
+            .history-title {
+                color: #8B4B8B;
+                text-align: center;
+                margin-top: 20px;
+                margin-bottom: 30px;
+                font-size: 2rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            }
+
+            .w3l-contact-info-main .contact-sec {
+                padding: 10px 0px 50px;
+            }
+        </style>
         <!-- /move top -->
     </body>
 

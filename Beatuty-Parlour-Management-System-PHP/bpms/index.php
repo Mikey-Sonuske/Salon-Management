@@ -36,6 +36,20 @@ include('includes/dbconnection.php');
   </script>
   <!-- disable body scroll which navbar is in active -->
 
+  <section class="homebanner">
+    <div class="container">
+      <div class="banner-text">
+        <div class="landtext">
+          <h3>Vio Hair Salon and Spa</h3>
+          <h4>We make your hair dreams<br>
+            come true</h4>
+        </div>
+        <a href="book-appointment.php" class="btn logo-button top-margin">Book an Appointment</a>
+      </div>
+    </div>
+  </section>
+
+  <!--
   <div class="w3l-hero-headers-9">
     <div class="css-slider">
       <input id="slide-1" type="radio" name="slides" checked>
@@ -62,10 +76,10 @@ include('includes/dbconnection.php');
             <a href="book-appointment.php" class="btn logo-button top-margin">Book an Appointment</a>
           </div>
         </div>
-        <!-- <nav>
+        <nav>
         <label for="slide-2" class="prev">&#10094;</label>
         <label for="slide-1" class="next">&#10095;</label>
-      </nav> -->
+      </nav> 
       </section>
       <header>
         <label for="slide-1" id="slide-1"></label>
@@ -73,6 +87,8 @@ include('includes/dbconnection.php');
       </header>
     </div>
   </div>
+  -->
+
   <h3 class="sectiontitle">Offers of the day</h3>
   <section class="w3l-call-to-action_9">
     <div class="call-w3 ">
@@ -83,12 +99,12 @@ include('includes/dbconnection.php');
             <div class="column col-lg-4 col-md-6 color-2 ">
               <div>
                 <h4 class="sectiontitle cta">Offering you professional services at an affordable cost</h4>
-                
-                <p class="para "> The Iconic Afro Cut!
-Rock your roots with style — bold, beautiful, and unapologetically YOU.
-✨ Get 20% OFF today only!
 
-Walk in or book now — let your crown shine. At a subsized cost, get the afro that'll last longer than the usual fros you have seen and probably tried
+                <p class="para "> The Iconic Afro Cut!
+                  Rock your roots with style — bold, beautiful, and unapologetically YOU.
+                  ✨ Get 20% OFF today only!
+
+                  Walk in or book now — let your crown shine. At a subsized cost, get the afro that'll last longer than the usual fros you have seen and probably tried
                 </p>
                 <a href="about.php" class="action-button btn mt-md-4 mt-3">Read more</a>
               </div>
@@ -97,7 +113,7 @@ Walk in or book now — let your crown shine. At a subsized cost, get the afro t
               <img src="assets/images/afro.jpg" alt="product" class="img-responsive ">
             </div>
             <div class="column col-lg-4 col-md-6 col-sm-6 back-image2 ">
-              <img  src="assets/images/saoon.jpg" alt="product" class="img-responsive ">
+              <img src="assets/images/saoon.jpg" alt="product" class="img-responsive ">
             </div>
           </div>
         </div>
@@ -135,6 +151,7 @@ Walk in or book now — let your crown shine. At a subsized cost, get the afro t
     </div>
     </div>
   </section>
+
   <h3 class="sectiontitle">Services we offer</h3>
   <section class="w3l-specification-6">
     <div class="specification-layout ">
@@ -168,7 +185,7 @@ Walk in or book now — let your crown shine. At a subsized cost, get the afro t
               <a href="services.php" class="action-button btn mt-md-4 mt-3">View other services</a>
             </div>
           </div>
-          
+
   </section>
 
   <?php include_once('includes/footer.php'); ?>
@@ -197,38 +214,48 @@ Walk in or book now — let your crown shine. At a subsized cost, get the afro t
     }
   </script>
   <style>
-    .slide-one {
-      background-image: url("../images/1.png"); }
-    .slide-two {
-     background-image: url("../images/2.jpg"); } 
+    .homebanner {
+      background-image: url("assets/my images/dark makeup.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    }
+.landtext{
+  color: purple;
+  font-weight: 900;
+}
+
     .sectiontitle {
       text-align: center;
       margin: 40px 0;
       font-size: 2.8rem;
-      font-weight:500;
+      font-weight: 500;
       color: #333;
       /* margin-bottom:-3rem; */
     }
-    .cta{
-      text-align: left;
-    }
-    .aelist{
+
+    .aelist {
       position: relative;
       color: purple;
       font-size: large;
     }
+
     .aelist li {
       margin: 0px 0;
     }
-    /* #slide-1{
-      background-color:white;
-    } */
-    /* h4 {
+
+    h4 {
       font-size: 2rem;
-      color: #333;
       margin-bottom: 20px;
       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    } */
+    }
   </style>
   <!-- /move top -->
 </body>

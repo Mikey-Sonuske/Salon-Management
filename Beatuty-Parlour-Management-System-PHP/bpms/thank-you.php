@@ -50,7 +50,9 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
                     <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a>
                         <p>
                     </li>
-                    <li class="active ">About</li>
+                    <li class="right-side propClone"><a href="book-appointment.php" class="">Book Now<span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                    </li>
+                    <li class="active ">Thank you</li>
                 </ul>
             </div>
         </div>
@@ -64,8 +66,11 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
           <div>
 
 
-            <h4 class="w3ls_head">Thank you for applying. Your Appointment no is <?php echo $_SESSION['aptno']; ?> </h4>
-
+            <h4 class="w3ls_head">Thank you for applying. Your Appointment no is <?php echo $_SESSION['aptno']; ?> </h4><br>
+            <p class="w3ls_para">We will contact you soon.</p><br>
+            <p class="w3ls_para">You can check your appointment status in Booking history page.</p><br>
+            <p class="w3ls_para">You can also check your appointment status by clicking the button below.</p><br>
+            <a href="booking-history.php" class="btn logo-button top-margin">Check Appointment Status</a>
 
           </div>
 

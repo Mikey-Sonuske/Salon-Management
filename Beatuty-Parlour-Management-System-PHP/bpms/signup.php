@@ -18,12 +18,17 @@ if (isset($_POST['submit'])) {
         echo "<script>alert('This email or Contact Number already associated with another account!.');</script>";
     } else {
         $query = mysqli_query($con, "insert into tbluser(FirstName, LastName, MobileNumber, Email, Password) value('$fname', '$lname','$contno', '$email', '$password' )");
-        if ($query) {
-
-            echo "<script>alert('You have successfully registered.');</script>";
-            echo '<script>window.location.href=login.php</script>';
+         if ($query) {
+            // Get the user ID of the newly registered user
+            $userid = mysqli_insert_id($con);
+            
+            // Set session variables
+            $_SESSION['bpmsuid'] = $userid;
+            $_SESSION['login'] = $email;
+            
+            echo "<script>alert('You have successfully registered!');</script>";
+            echo "<script>window.location.href='index.php'</script>";
         } else {
-
             echo "<script>alert('Something Went Wrong. Please try again.');</script>";
         }
     }
@@ -141,6 +146,7 @@ if (isset($_POST['submit'])) {
                         -->
                     <div class="details">
  <div class="map-content-9 mt-lg-0 mt-4">
+    <p>If already registered, click<a href="login.php"> here</a> to login</p>
                         <p>Register with us to start enjoying the benefits of being a member!!</p>
                         <form method="post" name="signup" onsubmit="return checkpass();">
 

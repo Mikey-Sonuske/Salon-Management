@@ -2,6 +2,17 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
+if (isset($_GET['action']) && $_GET['action'] == 'cancel') {
+  $aptnumber = $_GET['aptnumber'];
+  $query = mysqli_query($con, "update tblbook set Status='Cancelled' where AptNumber='$aptnumber'");
+  if ($query) {
+    echo "<script>alert('Your appointment has been cancelled successfully.');</script>";
+    echo "<script>window.location.href='booking-history.php'</script>";
+  } else {
+    echo "<script>alert('Something went wrong. Please try again later.');</script>";
+  }
+}
+
 if (strlen($_SESSION['bpmsuid'] == 0)) {
   header('location:logout.php');
 } else {
@@ -43,18 +54,20 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
     <!-- disable body scroll which navbar is in active -->
 
     <!-- breadcrumbs -->
-   <section class="w3l-inner-banner-main">
-        <div class="breadcrumbs-sub">
-            <div class="container">
-                <ul class="breadcrumbs-custom-path">
-                    <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a>
-                        <p>
+    <section class="w3l-inner-banner-main">
+      <div class="breadcrumbs-sub">
+        <div class="container">
+          <ul class="breadcrumbs-custom-path">
+            <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+              <p>
+            </li>
+            <li class="right-side propClone"><a href="booking-history.php" class="">Booking History <span class="fa fa-angle-right" aria-hidden="true"></span></a>
                     </li>
-                    <li class="active ">Appointment details</li>
-                </ul>
-            </div>
+            <li class="active ">Appointment details</li>
+          </ul>
         </div>
-        </div>
+      </div>
+      </div>
     </section>
     <!-- breadcrumbs //-->
     <section class="w3l-contact-info-main" id="contact">
@@ -64,7 +77,7 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
           <div>
             <div class="cont-details">
               <div class="table-content table-responsive cart-table-content m-t-30">
-                <h4 style="padding-bottom: 20px;text-align: center;color: blue;">Appointment Details</h4>
+                <h3 style="padding-bottom: 20px;text-align: center;color: purple;">Appointment Details</h4>
                 <?php
                 $cid = $_GET['aptnumber'];
                 $ret = mysqli_query($con, "select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.Message,tblbook.BookingDate,tblbook.Remark,tblbook.Status,tblbook.RemarkDate from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.AptNumber='$cid'");
@@ -122,6 +135,18 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
                               echo "Rejected";
                             }; ?></td>
                     </tr>
+                    <tr>
+                      <th>Action</th>
+                      <td>
+                        <?php if ($row['Status'] == "" || $row['Status'] == "Selected") { ?>
+                          <a href="?aptnumber=<?php echo $row['AptNumber']; ?>&action=cancel"
+                            onclick="return confirm('Are you sure you want to cancel this appointment?')"
+                            class="btn btn-danger">Cancel Appointment</a>
+                        <?php } else { ?>
+                          <span class="text-danger">Appointment <?php echo $row['Status']; ?></span>
+                        <?php } ?>
+                      </td>
+                    </tr>
                   </table><?php } ?>
               </div>
             </div>
@@ -156,6 +181,74 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
         document.documentElement.scrollTop = 0;
       }
     </script>
+
+    <style>
+      .table-content {
+        max-width: 800px;
+        margin: auto auto;
+        padding: 20px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .table-bordered {
+        border: 2px solid purple;
+      }
+
+      .table-bordered th {
+        color: b;
+        padding: 15px;
+        width: 200px;
+        border: purple 2px solid;
+      }
+
+      .table-bordered td {
+        padding: 15px;
+        border: purple 2px solid;
+        color: #666;
+      }
+
+      .appointment-title {
+        color: #FF69B4;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .btn-danger {
+        background: #FF69B4;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 25px;
+        border: none;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn-danger:hover {
+        background: #FF1493;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+      }
+
+      .text-danger {
+        color: #FF69B4;
+        font-weight: 600;
+      }
+
+      .w3l-contact-info-main {
+        background: #fdf6f8;
+        padding: 10px 50;
+      }
+      .w3l-contact-info-main .contact-sec {
+    padding: 10px 0px 50px;
+}
+    </style>
     <!-- /move top -->
   </body>
 
