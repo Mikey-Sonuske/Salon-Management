@@ -161,10 +161,13 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
                                             </tr>
                                         <?php } ?>
                                     </tbody>
+                                    
                                 </table>
+                                 
                             </div>
+                            
                         </div>
-
+<a href="index.php" class="btn btn-danger">Done</a>
                     </div>
 
                 </div>

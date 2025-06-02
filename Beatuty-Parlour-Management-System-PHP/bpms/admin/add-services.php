@@ -10,6 +10,7 @@ if (strlen($_SESSION['bpmsaid'] == 0)) {
 		$sername = $_POST['sername'];
 		$serdesc = $_POST['serdesc'];
 		$cost = $_POST['cost'];
+		$discount = $_POST['discount'];
 		$image = $_FILES["image"]["name"];
 
 		if (isset($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
@@ -27,8 +28,8 @@ if (strlen($_SESSION['bpmsaid'] == 0)) {
 				$newimage = md5($image . time()) . '.' . $extension;
 				if (move_uploaded_file($_FILES["image"]["tmp_name"], "images/" . $newimage)) {
 					// Insert into database
-					$query = mysqli_query($con, "INSERT INTO tblservices(ServiceName, ServiceDescription, Cost, Image) 
-                    VALUES ('$sername', '$serdesc', '$cost', '$newimage')");
+					$query = mysqli_query($con, "INSERT INTO tblservices(ServiceName, ServiceDescription, Cost, Discount, Image) 
+                    VALUES ('$sername', '$serdesc', '$cost', '$discount', '$newimage')");
 
 					if ($query) {
 						echo "<script>alert('Service has been added successfully.');</script>";
@@ -114,7 +115,9 @@ if (strlen($_SESSION['bpmsaid'] == 0)) {
 									<div class="form-group"> <label for="exampleInputEmail1">Service Name</label> <input type="text" class="form-control" id="sername" name="sername" placeholder="Service Name" value="" required="true"> </div>
 									<div class="form-group"> <label for="exampleInputEmail1">Service Description</label> <textarea type="text" class="form-control" id="sername" name="serdesc" placeholder="Service Description" value="" required="true"></textarea> </div>
 									<div class="form-group"> <label for="exampleInputPassword1">Cost</label> <input type="text" id="cost" name="cost" class="form-control" placeholder="Cost" value="" required="true"> </div>
+									<div class="form-group"><label for="discount">Discount (%)</label><input type="number" class="form-control" id="discount" name="discount" placeholder="Enter discount percentage" min="0" max="100" value="0"></div>
 									<div class="form-group"> <label for="exampleInputEmail1">Images</label> <input type="file" class="form-control" id="image" name="image" value="" required="true"> </div>
+
 									<button type="submit" name="submit" class="btn btn-default">Add</button>
 								</form>
 							</div>
@@ -152,7 +155,7 @@ if (strlen($_SESSION['bpmsaid'] == 0)) {
 			<!--//scrolling js-->
 			<!-- Bootstrap Core JavaScript -->
 			<script src="js/bootstrap.js"> </script>
-			
+
 	</body>
 
 	</html>

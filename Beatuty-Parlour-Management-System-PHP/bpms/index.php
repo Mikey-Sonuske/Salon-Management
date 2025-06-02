@@ -158,16 +158,16 @@ include('includes/dbconnection.php');
       <div class="container">
         <div class=" row">
           <div class="col-lg-6 back-image">
-            <img src="assets/images/b1.jpg" alt="product" class="img-responsive ">
+            <img src="assets/my images/supplies.jpg" alt="product" class="img-responsive ">
           </div>
           <div class="col-lg-6 about-right-faq align-self">
-            <h3 class="title-big"><a href="services.php">Clean and Recommended Hair Salon</a></h3>
-            <p class="mt-3 para"> Their array of beauty parlour services include haircuts, hair spas, colouring, texturing, styling, waxing, pedicures, manicures, threading, body spa, natural facials and more.</p>
+            <h3 class="title-big"><a href="services.php">Vio Hair Salon: Offering Quality at a friendly price</a></h3>
+            <p class="mt-3 para">Our array of beauty parlour services include :</p>
             <div class="hair-cut">
               <div>
                 <ul class="w3l-right-book">
                   <li><span class="fa fa-check" aria-hidden="true"></span><a href="services.php">Hair wash with Blow dry</a></li>
-                  <li><span class="fa fa-check" aria-hidden="true"></span><a href="services.php">Color & highlights</a></li>
+                  <li><span class="fa fa-check" aria-hidden="true"></span><a href="services.php">Hair relaxing</a></li>
                   <li><span class="fa fa-check" aria-hidden="true"></span><a href="services.php">Braiding</a></li>
                   <li><span class="fa fa-check" aria-hidden="true"></span><a href="services.php">Curling</a></li>
                   <li><span class="fa fa-check" aria-hidden="true"></span><a href="services.php">Locs</a></li>
@@ -176,7 +176,7 @@ include('includes/dbconnection.php');
               <div class="image-right">
                 <ul class="w3l-right-book">
                   <li><span class="fa fa-check" aria-hidden="true"></span><a href="services.php">Make-up</a></li>
-                  <li><span class="fa fa-check" aria-hidden="true"></span><a href="services.php">Hair Treatment</a></li>
+                  <li><span class="fa fa-check" aria-hidden="true"></span><a href="services.php">Nails</a></li>
                   <li><span class="fa fa-check" aria-hidden="true"></span><a href="services.php">Face Massage</a></li>
                   <li><span class="fa fa-check" aria-hidden="true"></span><a href="services.php">Skin Care</a></li>
                   <li><span class="fa fa-check" aria-hidden="true"></span><a href="services.php">Body Therapy</a></li>
@@ -187,6 +187,56 @@ include('includes/dbconnection.php');
           </div>
 
   </section>
+
+  <h3 class="sectiontitle">Hot deals of the week</h3>
+<section class="w3l-member-deals">
+    <div class="container">
+        <div class="deals-wrapper">
+            <?php 
+            if (isset($_SESSION['bpmsuid'])) {
+                $ret = mysqli_query($con, "SELECT * FROM tblservices WHERE Discount > 0");
+                if(mysqli_num_rows($ret) > 0) { ?>
+                    <div class="row">
+                        <?php while ($row = mysqli_fetch_array($ret)) {
+                            $discountedPrice = $row['Cost'] - ($row['Cost'] * $row['Discount'] / 100);
+                        ?>
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="deal-card">
+                                    <img src="admin/images/<?php echo $row['Image']; ?>" 
+                                         alt="<?php echo $row['ServiceName']; ?>" 
+                                         class="deal-image">
+                                    <div class="deal-content">
+                                        <h4><?php echo $row['ServiceName']; ?></h4>
+                                        <div class="price-section">
+                                            <span class="original-price"> Was Ksh <?php echo number_format($row['Cost'], 2); ?></span><br>
+                                            <span class="final-price">NOW Ksh <?php echo number_format($discountedPrice); ?></span>
+                                        </div><br>
+                                        <a href="book-appointment.php?service_id=<?php echo $row['ID']; ?>" 
+                                           class="btn logo-button">Book Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                <?php } else { ?>
+                    <div class="no-deals-message">
+                        <h4>No deals available at the moment</h4>
+                        <p>Check back later for exclusive member discounts!</p>
+                    </div>
+                <?php }
+            } else { ?>
+                <div class="member-login-prompt">
+                    <h4>Member Exclusive Deals Available!</h4>
+                    <p>Log in to view special discounts and offers available only to our members.</p>
+                    <div class="prompt-buttons">
+                        <a href="login.php" class="btn logo-button">Login</a>
+                        <a href="signup.php" class="btn logo-button">Sign Up</a>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+</section>
 
   <?php include_once('includes/footer.php'); ?>
   <!-- move top -->

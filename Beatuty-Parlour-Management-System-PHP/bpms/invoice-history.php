@@ -59,11 +59,12 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
     <section class="w3l-contact-info-main" id="contact">
       <div class="contact-sec	">
         <div class="container">
-
+<p>You receive an invoice immediately after you have been served at our salon</p>
+<br>
           <div>
             <div class="cont-details">
               <div class="table-content table-responsive cart-table-content">
-                <h4 style="padding-bottom: 20px;text-align: center;color: blue;">Invoice History</h4>
+                <h4 style="padding-bottom: 20px;text-align: center;color: purple;">Invoice History</h4>
                 <table class="table" border="1">
                   <thead>
                     <tr>
@@ -105,6 +106,7 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
 
                   </tbody>
                 </table>
+                 <p><a href="index.php" class="btn btn-danger">Done</a></p>
               </div>
             </div>
 

@@ -148,6 +148,7 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
                       </td>
                     </tr>
                   </table><?php } ?>
+                  <a href="booking-history.php" class="btn btn-danger">Done</a>
               </div>
             </div>
 

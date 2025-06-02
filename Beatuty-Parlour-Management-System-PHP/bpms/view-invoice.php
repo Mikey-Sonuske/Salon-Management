@@ -43,18 +43,18 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
     <!-- disable body scroll which navbar is in active -->
 
     <!-- breadcrumbs -->
-   <section class="w3l-inner-banner-main">
-        <div class="breadcrumbs-sub">
-            <div class="container">
-                <ul class="breadcrumbs-custom-path">
-                    <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a>
-                        <p>
-                    </li>
-                    <li class="active ">Booking History</li>
-                </ul>
-            </div>
+    <section class="w3l-inner-banner-main">
+      <div class="breadcrumbs-sub">
+        <div class="container">
+          <ul class="breadcrumbs-custom-path">
+            <li class="right-side propClone"><a href="index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+              <p>
+            </li>
+            <li class="active ">Booking History</li>
+          </ul>
         </div>
-        </div>
+      </div>
+      </div>
     </section>
     <!-- breadcrumbs //-->
     <section class="w3l-contact-info-main" id="contact">
@@ -135,15 +135,17 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
                       </tr>
                     </table>
                     <p style="margin-top:1%" align="center">
-                      <i class="fa fa-print fa-2x" style="cursor: pointer;" OnClick="CallPrint(this.value)"></i>
+                      <button onclick="CallPrint()" class="print-button" style="border:none; background:none;">
+                        <i class="fa fa-print fa-2x" style="cursor: pointer; color: #FF69B4;"></i>
+                      </button><br><br>
+                      <p><a href="booking-history.php" class="btn btn-danger">Done</a></p>
                     </p>
                   </div>
+
               </div>
 
             </div>
-
           </div>
-        </div>
     </section>
     <?php include_once('includes/footer.php'); ?>
     <!-- move top -->
@@ -168,6 +170,24 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
       function topFunction() {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
+      }
+
+      function CallPrint(strid) {
+        var printContent = document.getElementsByClassName("widget-shadow")[0];
+        var originalContent = document.body.innerHTML;
+
+        document.body.innerHTML = printContent.innerHTML;
+
+        // Remove the print button from print view
+        var printButton = document.getElementsByClassName("fa-print")[0];
+        if (printButton) {
+          printButton.style.display = "none";
+        }
+
+        window.print();
+
+        // Restore original content
+        document.body.innerHTML = originalContent;
       }
     </script>
     <!-- /move top -->
