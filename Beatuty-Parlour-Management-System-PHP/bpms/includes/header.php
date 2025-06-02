@@ -29,13 +29,14 @@
                         </li>
 
                         <?php if (strlen($_SESSION['bpmsuid'] == 0)) { ?>
-                            
+
                             <li class="nav-item">
                                 <a class="nav-link" href="signup.php">Signup</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="login.php">Login</a>
-                            </li><li class="nav-item">
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="admin/index.php">Admin</a>
                             </li><?php } ?>
                         <?php if (strlen($_SESSION['bpmsuid'] > 0)) { ?>
@@ -58,6 +59,11 @@
                             </li>-->
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php">Logout</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="loyalty.php">
+                                    <i class="fa fa-user-circle"></i>
+                                </a>
                             </li>
                         <?php } ?>
                     </ul>

@@ -228,6 +228,7 @@ include('includes/dbconnection.php');
                 <div class="member-login-prompt">
                     <h4>Member Exclusive Deals Available!</h4>
                     <p>Log in to view special discounts and offers available only to our members.</p>
+                    <br><br>
                     <div class="prompt-buttons">
                         <a href="login.php" class="btn logo-button">Login</a>
                         <a href="signup.php" class="btn logo-button">Sign Up</a>
@@ -264,6 +265,12 @@ include('includes/dbconnection.php');
     }
   </script>
   <style>
+    .logo-button{
+      margin: 0px 50px 20px 20px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      padding: 40px 40px;
+    }
     .homebanner {
       background-image: url("assets/my images/dark makeup.jpg");
       background-size: cover;
